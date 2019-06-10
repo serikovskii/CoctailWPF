@@ -1,0 +1,62 @@
+﻿<Window x:Class="Coctails.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Coctails"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Grid.Column="0" Grid.Row="0" Height="85" Padding="10" Margin="10" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Vertical">
+                <ComboBox x:Name="filter" Width="200" Height="40" Margin="-500,15,0,0" SelectionChanged="FilterSelectionChanged">
+                    <ComboBoxItem Content="Alcohol"/>
+                    <ComboBoxItem Content="Category"/>
+                </ComboBox>
+                <ComboBox x:Name="type" Width="200" Height="40" Margin="0,-40,0,0" SelectionChanged="TypeSelectionChanged" ></ComboBox>
+                <Button Name="search" Content="Search" Width="200" Height="40" Margin="500,-40,0,0" Click="SearchAllCoctails"/>
+            </StackPanel>
+        </materialDesign:Card>
+        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Grid.Column="0" Grid.Row="1" Height="280" Padding="10" Margin="10">
+            <DataGrid Name="listCoctails" >
+                <DataGridTextColumn Header="Coctails" Binding="{Binding Path=type.AllDrink}"/>
+            </DataGrid>
+        </materialDesign:Card>
+        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Grid.Column="1" Grid.Row="1" Height="280" Padding="10" Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0">
+                    <TextBlock FontWeight="Bold">Name:</TextBlock>
+                    <TextBlock FontWeight="Bold">Category:</TextBlock>
+                    <TextBlock FontWeight="Bold">Alcohol:</TextBlock>
+                    <TextBlock FontWeight="Bold">Ingredients:</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="0">
+                    <TextBlock Text="{Binding Path=Name}"/>
+                    <TextBlock Text="{Binding Path=Category}"/>
+                    <TextBlock Text="{Binding Path=Alcohol}"/>
+                    <TextBlock Text="{Binding Path=Ingredients}"/>
+                </StackPanel>
+                <Button Name="order" Grid.Column="1" Grid.Row="1" Content="Order" Width="150" Height="40" Click="SearchAllCoctails"/>
+            </Grid>
+            
+        </materialDesign:Card>
+
+    </Grid>
+</Window>
